@@ -1,6 +1,6 @@
 # Puzzle Game
 
-4x4 보드에서 같은 과일 카드 2장을 찾아 맞추는 메모리 퍼즐 게임입니다.  
+6x6 보드에서 같은 과일 카드 2장을 찾아 맞추는 메모리 퍼즐 게임입니다.  
 순수 HTML, CSS, JavaScript로 구성되어 있으며 별도의 빌드 도구나 서버 없이 브라우저에서 실행할 수 있습니다.
 
 ## 실행 방법
@@ -49,12 +49,12 @@ puzzle-game/
 
 게임에서 공통으로 사용하는 값과 카드 생성 로직을 담당합니다.
 
-- `BOARD_SIZE`: 보드 크기입니다. 현재 값은 `4`라서 4x4 보드가 됩니다.
+- `BOARD_SIZE`: 보드 크기입니다. 현재 값은 `6`이라서 6x6 보드가 됩니다.
 - `MATCH_SIZE`: 한 번에 비교할 카드 수입니다. 현재 값은 `2`입니다.
 - `FLIP_BACK_DELAY`: 카드가 틀렸을 때 다시 닫히기까지의 시간입니다.
 - `fruits`: 카드에 들어갈 과일 데이터입니다.
 - `shuffle(items)`: 배열을 무작위로 섞습니다.
-- `createCards()`: 과일 8종을 2장씩 복제해 총 16장의 카드 데이터를 만들고 섞습니다.
+- `createCards()`: 과일 18종을 2장씩 복제해 총 36장의 카드 데이터를 만들고 섞습니다.
 
 카드 데이터는 대략 아래 형태입니다.
 
@@ -91,6 +91,7 @@ function renderBoard() {
 
   tryCountElement.textContent = state.tryCount;
   matchCountElement.textContent = state.matchCount;
+  matchTotalElement.textContent = fruits.length;
   timeCountElement.textContent = state.elapsedSeconds;
 
   state.cards.forEach(function (card) {
@@ -123,7 +124,7 @@ const state = {
 
 각 값의 의미는 다음과 같습니다.
 
-- `cards`: 전체 카드 16장
+- `cards`: 전체 카드 36장
 - `selectedCards`: 현재 사용자가 뒤집은 카드들
 - `tryCount`: 두 장을 선택한 횟수
 - `matchCount`: 맞춘 짝 수
@@ -169,7 +170,7 @@ function startGame() {
 }
 ```
 
-이때 `createCards()`가 16장의 섞인 카드 데이터를 새로 만듭니다.
+이때 `createCards()`가 36장의 섞인 카드 데이터를 새로 만듭니다.
 
 ### 2. 카드 선택
 
@@ -284,7 +285,7 @@ function checkClear() {
 }
 ```
 
-과일은 8종이고 각 과일이 2장씩 있으므로, `matchCount`가 8이 되면 게임이 끝납니다.
+과일은 18종이고 각 과일이 2장씩 있으므로, `matchCount`가 18이 되면 게임이 끝납니다.
 
 ## 핵심 로직 요약
 
@@ -292,7 +293,7 @@ function checkClear() {
 
 ```text
 게임 시작
-→ 카드 16장 생성
+→ 카드 36장 생성
 → 카드 섞기
 → 보드 렌더링
 → 사용자가 카드 클릭
@@ -300,7 +301,7 @@ function checkClear() {
 → 2장이 선택되면 비교
 → 같으면 매칭 처리
 → 다르면 잠시 후 다시 닫기
-→ 8쌍을 모두 맞추면 게임 종료
+→ 18쌍을 모두 맞추면 게임 종료
 ```
 
 핵심은 `state` 객체입니다.  

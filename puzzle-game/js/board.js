@@ -1,6 +1,7 @@
 const boardElement = document.querySelector("#game-board");
 const tryCountElement = document.querySelector("#try-count");
 const matchCountElement = document.querySelector("#match-count");
+const matchTotalElement = document.querySelector("#match-total");
 const timeCountElement = document.querySelector("#time-count");
 const messageElement = document.querySelector("#message");
 const statusElement = document.querySelector(".status");
@@ -11,6 +12,7 @@ function renderBoard() {
 
   tryCountElement.textContent = state.tryCount;
   matchCountElement.textContent = state.matchCount;
+  matchTotalElement.textContent = fruits.length;
   timeCountElement.textContent = state.elapsedSeconds;
 
   state.cards.forEach(function (card) {

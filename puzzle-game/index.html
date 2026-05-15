@@ -11,14 +11,14 @@
     <section class="game-header">
       <div>
         <h1>과일 메모리 퍼즐</h1>
-        <p>4x4 보드에서 같은 과일 카드 2장을 찾아보세요.</p>
+        <p>6x6 보드에서 같은 과일 카드 2장을 찾아보세요.</p>
       </div>
       <button id="restart-button" type="button">다시 시작</button>
     </section>
 
     <section class="status" aria-live="polite">
       <span>시도 횟수: <strong id="try-count">0</strong></span>
-      <span>찾은 짝: <strong id="match-count">0</strong> / 8</span>
+      <span>찾은 짝: <strong id="match-count">0</strong> / <strong id="match-total">0</strong></span>
       <span>경과 시간: <strong id="time-count">0</strong>초</span>
       <span id="message">카드 2장을 선택하세요.</span>
     </section>
